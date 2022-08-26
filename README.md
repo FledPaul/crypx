@@ -39,8 +39,8 @@ View repository and user information, control your notifications and even manage
 
 **Available for Debian and Windows**
 
-<p align="center">
-  <img src="https://file.fled.dev/crypx/app.svg" width=350>
+<p align="left">
+  <img src="https://file.fled.dev/crypx/crypx.svg" width=500>
 </p>
 
 ## Features
