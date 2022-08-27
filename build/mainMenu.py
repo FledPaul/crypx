@@ -1,5 +1,5 @@
 # Import sys, dateimtime, json, urllib.request
-import sys, datetime, json, urllib.request
+import sys, datetime, json, urllib.request, ssl
 
 # Import PyQt5 stuff
 from PyQt5 import QtGui
@@ -81,7 +81,7 @@ class MainMenu(QMainWindow):
             
             try:
                 # Returns the API data as a dict
-                with urllib.request.urlopen('https://blockchain.info/rawtx/' + hashInput) as url:
+                with urllib.request.urlopen('https://blockchain.info/rawtx/' + hashInput, context=ssl.create_default_context()) as url:
                     apiData = json.loads(url.read().decode())    
             # Set the error text
             except urllib.error.HTTPError as e:
@@ -91,7 +91,7 @@ class MainMenu(QMainWindow):
                     self.error.setText('Error 501 : Not Implemented')
                 else:
                     self.error.setText('Unknown Error')
-            except urllib.error.URLError as e:
+            except urllib.error.URLError:
                 self.error.setText('Non HTTP-Specific Error')
 
             # Generate the API data
