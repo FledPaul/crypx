@@ -104,9 +104,11 @@ class MainMenu(QMainWindow):
             apiInput = apiData['inputs'][0]['prev_out']['addr']
             apiOutput = apiData['out'][0]['addr']
             
-            # Get API currency (bitcoin, litecoin, etc)
+            # Get API currency (bitcoin, etc)
             if apiData['inputs'][0]['prev_out']['addr'].startswith('bc'):
                 apiCurrency = ' BTC'
+            else:
+                apiCurrency = ''
             
             # Sets the label time attributes (opacity 0.5 to opacity 0.8).
             self.amount.setStyleSheet('background-color: #EEEEEE; font-family: Poppins; border-radius: 25px; font-size: 20px; padding: 0px 20px; color: rgba(68, 68, 68, 0.8);')

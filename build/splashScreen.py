@@ -12,7 +12,7 @@ from PyQt5.QtCore import QTimer
 class SplashScreen(QMainWindow):
     def __init__(self):
         super().__init__()
-            
+        
         # Sets the window flags for frameless and top hints.
         flags = QtCore.Qt.WindowFlags(QtCore.Qt.FramelessWindowHint | QtCore.Qt.WindowStaysOnTopHint)         
 
@@ -22,10 +22,10 @@ class SplashScreen(QMainWindow):
         self.setStyleSheet('background-color: #FFFFFF;')
          
         # Get image from server
-        urlImage = 'https://file.fled.dev/crypx/latest.png'
+        urlImage = 'https://file.fled.dev/crypx/2022.8.1-a.png'
         Image = QImage()
         Image.loadFromData(requests.get(urlImage).content)
-            
+        
         # Create QLabel and set pixmap.
         self.label = QLabel(self)
         self.label.setPixmap(QPixmap(Image))
@@ -34,10 +34,10 @@ class SplashScreen(QMainWindow):
 
 
 # Define and display the SplashScreen
-app = QApplication(sys.argv)
-splashScreen = SplashScreen()
-splashScreen.show()
+splashScreen = QApplication(sys.argv)
+window = SplashScreen()
+window.show()
 
 # Quit app and exit (after 2000 milliseconds)
-QTimer.singleShot(2000, splashScreen.close)
-app.exec()
+QTimer.singleShot(2000, window.close)
+splashScreen.exec()
