@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <a href="https://fled.dev/crypx/download/latest.deb">
+  <a href="https://fled.dev/crypx/">
     <img alt="Download for Debian" title="Debian" src="https://file.fled.dev/illustrations/download-deb.svg" width="185">
   </a>
   &nbsp;&nbsp;&nbsp;
