@@ -54,7 +54,7 @@ A few of the things you can do with GitPoint:
 </p>
 
 ## Feedback
-Feel free to send me feedback on [Twitter](https://twitter.com/fledpaul). Feature requests are always welcome. If there's anything you'd like to chat about, please feel free to contact me via [mail@fled.dev](mail@fled.dev).
+Feel free to send me feedback on [Twitter](https://twitter.com/fledpaul). Feature requests are always welcome. If there's anything you'd like to chat about, please feel free to contact me via [mail@fled.dev](mailto:mail@fled.dev).
 
 ## Requirements
 - Python3
