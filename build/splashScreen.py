@@ -22,7 +22,7 @@ class SplashScreen(QMainWindow):
         self.setStyleSheet('background-color: #FFFFFF;')
          
         # Get image from server
-        urlImage = 'https://file.fled.dev/crypx/versions/2022.8.3.png'
+        urlImage = 'https://file.fled.dev/crypx/versions/2022.8.4.png'
         Image = QImage()
         Image.loadFromData(requests.get(urlImage).content)
         

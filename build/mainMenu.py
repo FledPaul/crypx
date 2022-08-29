@@ -56,16 +56,13 @@ class MainMenu(QMainWindow):
         self.time.setText('Time')
         self.time.setStyleSheet('background-color: #EEEEEE; font-family: Poppins; border-radius: 25px; font-size: 20px; padding: 0px 20px; color: rgba(68, 68, 68, 0.5);')
         
-        # Sets the sendFrom label
-        self.sendFrom = QLabel(self)
+        # Sets the sendFrom label (button)
+        self.sendFrom = QPushButton(self)
         self.sendFrom.resize(580, 65)
         self.sendFrom.move(35, 305)
         self.sendFrom.setText('Input Address')
-        self.sendFrom.setStyleSheet('background-color: #EEEEEE; font-family: Poppins; border-radius: 25px; font-size: 20px; padding: 0px 20px; color: rgba(68, 68, 68, 0.5);')
+        self.sendFrom.setStyleSheet('background-color: #EEEEEE; font-family: Poppins; border-radius: 25px; font-size: 20px; padding: 0px 25px; color: rgba(68, 68, 68, 0.5); text-align: left;')
         sendFrom = self.sendFrom.text()
-        def walletAnalyzer():
-            from build import walletAnalyzer
-        self.sendFrom.clicked.connect(walletAnalyzer)
 
         # Sets the sendTo label
         self.sendTo = QLabel(self)
@@ -81,6 +78,7 @@ class MainMenu(QMainWindow):
 
         def getInput():
             # Returns the hashInput
+            global hashInput
             hashInput = self.input.text()
             
             try:
@@ -119,8 +117,8 @@ class MainMenu(QMainWindow):
             self.fee.setStyleSheet('background-color: #EEEEEE; font-family: Poppins; border-radius: 25px; font-size: 20px; padding: 0px 20px; color: rgba(68, 68, 68, 0.8);')
             self.date.setStyleSheet('background-color: #EEEEEE; font-family: Poppins; border-radius: 25px; font-size: 20px; padding: 0px 20px; color: rgba(68, 68, 68, 0.8);')
             self.time.setStyleSheet('background-color: #EEEEEE; font-family: Poppins; border-radius: 25px; font-size: 20px; padding: 0px 20px; color: rgba(68, 68, 68, 0.8);')
-            self.sendFrom.setStyleSheet('background-color: #EEEEEE; font-family: Poppins; border-radius: 25px; font-size: 20px; padding: 0px 20px; color: rgba(68, 68, 68, 0.8);')
-            self.sendTo.setStyleSheet('background-color: #EEEEEE; font-family: Poppins; border-radius: 25px; font-size: 20px; padding: 0px 20px; color: rgba(68, 68, 68, 0.8);')
+            self.sendFrom.setStyleSheet('background-color: #EEEEEE; font-family: Poppins; border-radius: 25px; font-size: 20px; padding: 0px 25px; color: rgba(68, 68, 68, 0.8); text-align: left;')
+            self.sendTo.setStyleSheet('background-color: #EEEEEE; font-family: Poppins; border-radius: 25px; font-size: 20px; padding: 0px 25px; color: rgba(68, 68, 68, 0.8); text-align: left;')
             
             # Sets the return data (api data)
             self.amount.setText(str(apiValue) + apiCurrency)
@@ -129,6 +127,20 @@ class MainMenu(QMainWindow):
             self.time.setText(str(apiTime))
             self.sendFrom.setText(str(apiInput))
             self.sendTo.setText(str(apiOutput))
+
+
+        def walletAnalyzerInput():
+            try:
+                self.input.text() == hashInput
+            except NameError:
+                return
+            global address
+            address = self.sendFrom.text()                
+            from build import walletAnalyzer
+
+
+        self.sendFrom.clicked.connect(walletAnalyzerInput)
+
         
         # Creates a QPushButton and renders a linear gradient.
         self.submit = QPushButton(self)
