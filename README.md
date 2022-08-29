@@ -11,7 +11,7 @@
 
 <p align="center">
   <a href="https://fled.dev/crypx/">
-    <img alt="Download for Debian" title="Debian" src="https://file.fled.dev/illustrations/download-deb-blur.svg" width="185">
+    <img alt="Download for Debian" title="Debian" src="https://file.fled.dev/illustrations/download-deb.svg" width="185">
   </a>
   &nbsp;&nbsp;&nbsp;
   <a href="https://file.fled.dev/apps/crypx/crypx-2022.8.4.exe">
