@@ -62,6 +62,10 @@ class MainMenu(QMainWindow):
         self.sendFrom.move(35, 305)
         self.sendFrom.setText('Input Address')
         self.sendFrom.setStyleSheet('background-color: #EEEEEE; font-family: Poppins; border-radius: 25px; font-size: 20px; padding: 0px 20px; color: rgba(68, 68, 68, 0.5);')
+        sendFrom = self.sendFrom.text()
+        def walletAnalyzer():
+            from build import walletAnalyzer
+        self.sendFrom.clicked.connect(walletAnalyzer)
 
         # Sets the sendTo label
         self.sendTo = QLabel(self)
