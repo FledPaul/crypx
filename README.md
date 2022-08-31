@@ -1,7 +1,7 @@
 <h1 align="center"> Crypx - Block Explorer </h1> <br>
 <p align="center">
   <a href="https://fled.dev/crypx/">
-    <img alt="Crypx - Block Explorer" title="Crypx - Block Explorer" src="https://file.fled.dev/crypx/banner.svg" width="500">
+    <img alt="Crypx - Block Explorer" title="Crypx - Block Explorer" src="https://file.fled.dev/apps/crypx/svg/crypx-light.svg#only-gh-dark" width="500">
   </a>
 </p>
 
