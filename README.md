@@ -2,6 +2,7 @@
 <p align="center">
   <a href="https://fled.dev/crypx/">
     <img alt="Crypx - Block Explorer" title="Crypx - Block Explorer" src="https://file.fled.dev/apps/crypx/svg/crypx-light.svg#gh-dark-mode-only" width="500">
+    <img alt="Crypx - Block Explorer" title="Crypx - Block Explorer" src="https://file.fled.dev/apps/crypx/svg/crypx-dark.svg#gh-light-mode-only"
   </a>
 </p>
 
