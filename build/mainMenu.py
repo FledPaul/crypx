@@ -1,5 +1,5 @@
-# Import sys, dateimtime, json, urllib.request
-import sys, datetime, json, urllib.request, ssl, http
+# Import required modules
+import sys, datetime, json, urllib.request
 
 # Import PyQt5 stuff
 from PyQt5 import QtGui
@@ -12,86 +12,86 @@ class MainMenu(QMainWindow):
         super().__init__()
         
         # Sets the title for the main window
-        self.setWindowTitle('Crypx 2022.8.4')
+        self.setWindowTitle('Crypx 2022.8.5')
         self.setFixedSize(650, 490)
         self.setStyleSheet('background-color: #FFFFFF;')
 
-        # Creates a QLineEdit and sets the input
+        # Transaction hash input field
         self.input = QLineEdit(self)
         self.input.resize(420, 65)
         self.input.move(35, 35)
         self.input.setPlaceholderText('Enter Transaction ...')
         self.input.setStyleSheet('background-color: #EEEEEE; font-family: Poppins; border: none; border-radius: 25px; color: rgba(68, 68, 68, 0.5); font-size: 20px; padding: 10px 20px;')
 
-        # Sets the error label
+        # Transaction hash error label
         self.error = QLabel(self)
         self.error.resize(420, 20)
         self.error.move(55, 105)
         self.error.setStyleSheet('font-size: 15px; color: #FC6464; font-family: Poppins; background: transparent;')
         
-        # Sets the amount label
+        # Transferred amount label
         self.amount = QLabel(self)
         self.amount.resize(285, 65)
         self.amount.move(35, 135)
         self.amount.setText('Amount')
         self.amount.setStyleSheet('background-color: #EEEEEE; font-family: Poppins-SemiBold; border-radius: 25px; font-size: 20px; padding: 0px 20px; color: rgba(68, 68, 68, 0.5);')
         
-        # Sets the fee label
+        # Fee label
         self.fee = QLabel(self)
         self.fee.resize(285, 65)
         self.fee.move(330, 135)
         self.fee.setText('Fee')
         self.fee.setStyleSheet('background-color: #EEEEEE; font-family: Poppins-SemiBold; border-radius: 25px; font-size: 20px; padding: 0px 20px; color: rgba(68, 68, 68, 0.5);')
         
-        # Sets the date label
+        # Transaction date label
         self.date = QLabel(self)
         self.date.resize(285, 65)
         self.date.move(35, 210)
         self.date.setText('Date')
         self.date.setStyleSheet('background-color: #EEEEEE; font-family: Poppins-SemiBold; border-radius: 25px; font-size: 20px; padding: 0px 20px; color: rgba(68, 68, 68, 0.5);')
         
-        # Sets the time label
+        # Transaction time label
         self.time = QLabel(self)
         self.time.resize(285, 65)
         self.time.move(330, 210)
         self.time.setText('Time')
         self.time.setStyleSheet('background-color: #EEEEEE; font-family: Poppins-SemiBold; border-radius: 25px; font-size: 20px; padding: 0px 20px; color: rgba(68, 68, 68, 0.5);')
         
-        # Sets the sendFrom label (button)
-        self.sendFrom = QPushButton(self)
-        self.sendFrom.resize(580, 65)
-        self.sendFrom.move(35, 285)
-        self.sendFrom.setText('Input Address')
-        self.sendFrom.setStyleSheet('background-color: #EEEEEE; font-family: Poppins-SemiBold; border-radius: 25px; font-size: 20px; padding: 0px 25px; color: rgba(68, 68, 68, 0.5); text-align: left;')
-        sendFrom = self.sendFrom.text()
+        # Transaction input address label
+        self.txInput = QPushButton(self)
+        self.txInput.resize(580, 65)
+        self.txInput.move(35, 285)
+        self.txInput.setText('Input Address')
+        self.txInput.setStyleSheet('background-color: #EEEEEE; font-family: Poppins-SemiBold; border-radius: 25px; font-size: 20px; padding: 0px 25px; color: rgba(68, 68, 68, 0.5); text-align: left;')
+        txInputTxt = self.txInput.text()
 
-        # Sets the sendTo label
-        self.sendTo = QPushButton(self)
-        self.sendTo.resize(580, 65)
-        self.sendTo.move(35, 360)
-        self.sendTo.setText('Output Address')
-        self.sendTo.setStyleSheet('background-color: #EEEEEE; font-family: Poppins-SemiBold; border-radius: 25px; font-size: 20px; padding: 0px 20px; color: rgba(68, 68, 68, 0.5); text-align: left;')
-        sendTo = self.sendFrom.text()
+        # Transaction output address label
+        self.txOutput = QPushButton(self)
+        self.txOutput.resize(580, 65)
+        self.txOutput.move(35, 360)
+        self.txOutput.setText('Output Address')
+        self.txOutput.setStyleSheet('background-color: #EEEEEE; font-family: Poppins-SemiBold; border-radius: 25px; font-size: 20px; padding: 0px 20px; color: rgba(68, 68, 68, 0.5); text-align: left;')
+        txOutputTxt = self.txOutput.text()
 
-        # Adds the application font to the database
+        # Add some fonts to the database
         QtGui.QFontDatabase.addApplicationFont('font/Poppins-SemiBold.ttf')
         QtGui.QFontDatabase.addApplicationFont('font/Poppins-Medium.ttf')
 
 
         def getInput():
-            # Returns the hashInput
+            # Collect transaction hash
             global hashInput
             hashInput = self.input.text()
             
             try:
-                # Returns the API data as a dict
-                with urllib.request.urlopen('https://blockchain.info/rawtx/' + hashInput, context=ssl.create_default_context()) as url:
-                    apiData = json.loads(url.read().decode())    
-            # Set the error text
-            except urllib.error.HTTPError as e:
-                if format(e.code) == '404':
+                # Request raw api json data & decode it
+                apiDataRaw = urllib.request.urlopen('https://blockchain.info/rawtx/' + hashInput)
+                apiResponse = json.loads(apiDataRaw.read().decode())    
+            # Except web request errors (404, 501, etc.)
+            except urllib.error.HTTPError as weberror:
+                if format(weberror.code) == '404':
                     self.error.setText('Error 404 : Not Found')
-                elif format(e.code) == '501':
+                elif format(weberror.code) == '501':
                     self.error.setText('Error 501 : Not Implemented')
                 else:
                     self.error.setText('Unknown Error')
@@ -100,63 +100,33 @@ class MainMenu(QMainWindow):
             except:
                 self.error.setText('Unknown Error')
 
-            # Generate the API data
-            apiSatoshi = apiData['inputs'][0]['prev_out']['value']
-            apiValue = apiSatoshi / 100000000
-            apiFee = apiData['fee']
-            apiEpochDate = apiData['time']
-            apiDate = datetime.datetime.fromtimestamp(apiEpochDate).strftime('%Y-%m-%d')
-            apiTime = datetime.datetime.fromtimestamp(apiEpochDate).strftime('%H:%M:%S')
-            apiInput = apiData['inputs'][0]['prev_out']['addr']
-            apiOutput = apiData['out'][0]['addr']
+            # Define the api data variables
+            txSatoshi = apiResponse['inputs'][0]['prev_out']['value']
+            txBtc = txSatoshi / 100000000
+            txFee = apiResponse['fee']
+            txEpochDate = apiResponse['time']
+            txDate = datetime.datetime.fromtimestamp(txEpochDate).strftime('%Y-%m-%d')
+            txTime = datetime.datetime.fromtimestamp(txEpochDate).strftime('%H:%M:%S')
+            txInputAddr = apiResponse['inputs'][0]['prev_out']['addr']
+            txOutputAddr = apiResponse['out'][0]['addr']
             
-            # Get API currency (bitcoin, etc)
-            if apiData['inputs'][0]['prev_out']['addr'].startswith('bc'):
-                apiCurrency = ' BTC'
-            else:
-                apiCurrency = ''
-            
-            # Sets the label time attributes (opacity 0.5 to opacity 0.8).
+            # Change style after submit button is clicked
             self.amount.setStyleSheet('background-color: #EEEEEE; font-family: Poppins; border-radius: 25px; font-size: 20px; padding: 0px 20px; color: rgba(68, 68, 68, 0.8);')
             self.fee.setStyleSheet('background-color: #EEEEEE; font-family: Poppins; border-radius: 25px; font-size: 20px; padding: 0px 20px; color: rgba(68, 68, 68, 0.8);')
             self.date.setStyleSheet('background-color: #EEEEEE; font-family: Poppins; border-radius: 25px; font-size: 20px; padding: 0px 20px; color: rgba(68, 68, 68, 0.8);')
             self.time.setStyleSheet('background-color: #EEEEEE; font-family: Poppins; border-radius: 25px; font-size: 20px; padding: 0px 20px; color: rgba(68, 68, 68, 0.8);')
-            self.sendFrom.setStyleSheet('background-color: #EEEEEE; font-family: Poppins; border-radius: 25px; font-size: 20px; padding: 0px 25px; color: rgba(68, 68, 68, 0.8); text-align: left;')
-            self.sendTo.setStyleSheet('background-color: #EEEEEE; font-family: Poppins; border-radius: 25px; font-size: 20px; padding: 0px 25px; color: rgba(68, 68, 68, 0.8); text-align: left;')
+            self.txInput.setStyleSheet('background-color: #EEEEEE; font-family: Poppins; border-radius: 25px; font-size: 20px; padding: 0px 25px; color: rgba(68, 68, 68, 0.8); text-align: left;')
+            self.txOutput.setStyleSheet('background-color: #EEEEEE; font-family: Poppins; border-radius: 25px; font-size: 20px; padding: 0px 25px; color: rgba(68, 68, 68, 0.8); text-align: left;')
             
-            # Sets the return data (api data)
-            self.amount.setText(str(apiValue) + apiCurrency)
-            self.fee.setText(str(apiFee) + ' SAT')
-            self.date.setText(str(apiDate))
-            self.time.setText(str(apiTime))
-            self.sendFrom.setText(str(apiInput))
-            self.sendTo.setText(str(apiOutput))
-
-        # Start wallet analyzer for input
-        def walletAnalyzerInput():
-            try:
-                self.input.text() == hashInput
-            except NameError:
-                return
-            global address
-            address = self.sendFrom.text()                
-            from build import walletAnalyzer
-
-        # Start wallet analyzer for output
-        def walletAnalyzerOutput():
-            try:
-                self.input.text() == hashInput
-            except NameError:
-                return
-            global address
-            address = self.sendTo.text()                
-            from build import walletAnalyzer
-
-        # Add functions to buttons
-        self.sendFrom.clicked.connect(walletAnalyzerInput)
-        self.sendTo.clicked.connect(walletAnalyzerOutput)
+            # Sets requested api data to the labels
+            self.amount.setText(str(str(txBtc) + ' BTC'))
+            self.fee.setText(str(txFee) + ' SAT')
+            self.date.setText(str(txDate))
+            self.time.setText(str(txTime))
+            self.txInput.setText(str(txInputAddr))
+            self.txOutput.setText(str(txOutputAddr))
         
-        # Creates a QPushButton and renders a linear gradient.
+        # Submit button with color gradient
         self.submit = QPushButton(self)
         self.submit.resize(150, 65)
         self.submit.move(465, 35)
@@ -165,7 +135,7 @@ class MainMenu(QMainWindow):
         self.submit.clicked.connect(getInput)
 
 
-# Define and display the MainMenu
+# Define and display the main window
 mainMenu = QApplication(sys.argv)
 window = MainMenu()
 window.show()
