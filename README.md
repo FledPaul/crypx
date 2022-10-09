@@ -1,7 +1,7 @@
 <h1 align="center"> Crypx - Block Explorer </h1> <br>
 <p align="center">
   <a href="https://fled.dev/crypx/">
-    <img alt="Crext - Block Explorer" title="Crext - Block Explorer" src="https://file.fled.dev/apps/crext/svg/crypx-light.svg#gh-dark-mode-only" width="500">
+    <img alt="Crext - Block Explorer" title="Crext - Block Explorer" src="https://file.fled.dev/apps/crext/svg/crext-light.svg" width="500">
   </a>
 </p>
 
