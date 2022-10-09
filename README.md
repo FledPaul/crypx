@@ -35,7 +35,7 @@
 **Available for Debian and Windows**
 
 <p align="left">
-  <img src="https://file.fled.dev/crext/crext.svg" width=500>
+  <img src="https://file.fled.dev/crext/crext-light.svg" width=500>
 </p>
 
 ## Features
