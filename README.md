@@ -1,7 +1,7 @@
 <h1 align="center"> Crypx - Block Explorer </h1> <br>
 <p align="center">
   <a href="https://fled.dev/crypx/">
-    <img alt="Crypx - Block Explorer" title="Crypx - Block Explorer" src="https://file.fled.dev/apps/crypx/svg/crypx-light.svg#gh-dark-mode-only" width="500">
+    <img alt="Crext - Block Explorer" title="Crext - Block Explorer" src="https://file.fled.dev/apps/crext/svg/crypx-light.svg#gh-dark-mode-only" width="500">
   </a>
 </p>
 
@@ -10,11 +10,11 @@
 </p>
 
 <p align="center">
-  <a href="https://fled.dev/crypx/">
+  <a href="https://fled.dev/crext/">
     <img alt="Download for Debian" title="Debian" src="https://file.fled.dev/illustrations/download-deb-new.svg" width="185">
   </a>
   &nbsp;&nbsp;&nbsp;
-  <a href="https://file.fled.dev/apps/crypx/crypx-2022.8.5.exe">
+  <a href="https://file.fled.dev/apps/crypx/crext-2022.8.5.exe">
     <img alt="Download for Windows" title="Windows" src="https://file.fled.dev/illustrations/download-exe-new.svg" width="185">
   </a>
 </p>
@@ -35,12 +35,12 @@
 **Available for Debian and Windows**
 
 <p align="left">
-  <img src="https://file.fled.dev/crypx/crypx.svg" width=500>
+  <img src="https://file.fled.dev/crext/crext.svg" width=500>
 </p>
 
 ## Features
 
-A few of the things you can do with GitPoint:
+A few of the things you can do with Crext:
 
 * View Transfered Amount
 * View Fee
@@ -50,7 +50,7 @@ A few of the things you can do with GitPoint:
 * View Output Address
 
 <p align="left">
-  <img src = "https://file.fled.dev/crypx/crypx-working.svg" width=500>
+  <img src = "https://file.fled.dev/crext/crext-working.svg" width=500>
 </p>
 
 ## Feedback
