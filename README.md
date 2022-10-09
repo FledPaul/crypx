@@ -35,7 +35,7 @@
 **Available for Debian and Windows**
 
 <p align="left">
-  <img src="https://file.fled.dev/crext/crext-light.svg" width=500>
+  <img src="https://file.fled.dev/apps/crext/crext.svg" width=500>
 </p>
 
 ## Features
@@ -50,7 +50,7 @@ A few of the things you can do with Crext:
 * View Output Address
 
 <p align="left">
-  <img src = "https://file.fled.dev/crext/crext-working.svg" width=500>
+  <img src = "https://file.fled.dev/apps/crext/crext-working.svg" width=500>
 </p>
 
 ## Feedback
